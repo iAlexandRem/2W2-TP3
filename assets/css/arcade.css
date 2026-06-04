@@ -1,0 +1,552 @@
+body {
+    background-image: url("../images/gradient-arcade.png");
+    animation: backgroundDefile 60s linear infinite;
+}
+
+@keyframes backgroundDefile {
+    0% {
+        background-position: center 0;
+    }
+
+    100% {
+        background-position: center 1000px;
+    }
+}
+
+
+.tuile-jeu.woosh {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    animation: popIn 0.6s ease forwards; /* toutes les tuiles au démarrage de la page */
+}
+
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+/* avec un offset dans template.js */
+
+.tuile-jeu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+
+.header-sticky {
+    background: linear-gradient(90deg,
+            #094991 0%,
+            #3ea2ff 35%,
+            #34e260 70%,
+            #bbffff 100%);
+}
+
+nav a span::after {
+    transform-origin: left;
+    transition: scale 0.7s;
+    background-color: whitesmoke;
+}
+
+header {
+    position: relative;
+    background: linear-gradient(0deg, var(--teinte0), rgb(119 165 70 / 50%));
+}
+
+h2 {
+    text-align: center;
+}
+
+
+
+/* Barre de RECHERCHE */
+.search-container {
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+}
+
+[id=barre-recherche] {
+    width: 100%;
+    padding: 25px 60px 25px 30px;
+    border-radius: 60px;
+    border: none;
+    outline: none;
+    color: white;
+    background: linear-gradient(145deg, #0b0b1a, #14143a);
+    transition: 0.7s;
+}
+
+/* barre glow et scale+ au focus */
+[id=barre-recherche]:focus {
+    box-shadow:
+        0 0 35px rgba(0, 255, 247, 0.7),
+        0 0 80px rgba(180, 0, 255, 0.45),
+        0 0 120px rgba(0, 255, 136, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.08),
+        inset 0 0 50px rgba(0, 255, 200, 0.12);
+    transform: scale(1.02);
+}
+
+.reset {
+    /* x rouge */
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    transition: transform 0.7s ease;
+}
+
+.reset:hover {
+    filter: brightness(2);
+}
+
+.reset:active {
+    filter: brightness(3);
+}
+
+.reset.hidden {
+    display: none;
+}
+
+.search-container:focus-within .loupe,
+.search-container:focus-within .reset {
+    /* barre, loupe & xRouge scale+ au focus de la barre */
+    transform: translateX(10%) translateY(-50%) scale(1.1);
+}
+
+
+.loupe {
+    /* la loupe sera une clé */
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 26px;
+    color: #ffcc00;
+    transition: transform 0.7s ease;
+}
+
+.search-container:focus-within .loupe:hover { /* la clé se hover que si toute la barre est au focus */
+    text-shadow: 0 0 15px #ffcc00;
+    transition: text-shadow 0.42s ease;
+}
+
+.loupe.active {
+    filter: brightness(2);
+}
+
+.particules {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 60px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px); /* motif de points lumineux dans barre */
+    background-size: 15px 15px;
+    animation: bougeParticules 6s linear infinite;
+}
+
+@keyframes bougeParticules {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 120px 120px;
+    }
+}
+
+
+
+
+/* /////////////////////////////////////// vignettes ARCADE */
+.grille {
+    padding-left: 3.3rem; /* décalage de toute la grille sur la droite */
+}
+
+/* selon recherche.js */
+.match {
+    background-size: 15px 15px;
+    transform: scale(1.12);
+    opacity: 1;
+}
+
+.no-match {
+    transform: scale(0.85);
+    opacity: 0.2;
+    filter: blur(3px) grayscale(0.8);
+}
+
+.genre.active {
+    transform: scale(1.1);
+    background: linear-gradient(145deg, #71ff76, #00af0c);
+    /* illuminé */
+}
+
+.auteur.active {
+    transform: scale(1.1);
+    filter: brightness(2);
+    /* illuminé */
+}
+
+
+
+/* pour les CADENAS */
+.arcade-cadenas div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    display: grid;
+    place-items: center;
+    transition: all 0.35s ease;
+}
+
+.arcade-cadenas div::before {
+    content: "🔒"; /* cadenas fermé */
+    transition: all 0.35s ease;
+}
+
+.tuile-jeu.unlocked .arcade-cadenas div::before {
+    /* voir clé.js */
+    content: "🔓"; /* cadenas ouvert */
+    opacity: 0;
+    transform: rotate(180deg);
+    transition-delay: 0.5s;
+}
+
+.vignette.freeze {
+    filter: brightness(0.6);
+    pointer-events: none; /* aucune interaction avec vignette si je n'enlève pas le freeze */
+}
+
+.vignette {
+    filter: brightness(1); /* une fois déverrouillée, peut hover depuis main.css */
+}
+
+
+
+/* les FAVORIS */
+.favori.cache {
+    display: none;
+}
+
+.favori {
+    /* symbole étoile à cocher */
+    position: absolute;
+    top: 105px;
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.favori.actif {
+    /* étoile active */
+    color: gold;
+    transform: scale(1.2);
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #ff0,
+        0 0 20px #ff0,
+        0 0 30px #ff0,
+        0 0 40px #f0f,
+        0 0 55px #0ff,
+        0 0 75px #fff;
+    animation: virevolte 1.2s infinite alternate, brille 1.5s infinite alternate;
+}
+
+/* rotation et rebond */
+@keyframes virevolte {
+    0% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+
+    50% {
+        transform: scale(1.25) rotate(5deg);
+    }
+
+    100% {
+        transform: scale(1.2) rotate(-5deg);
+    }
+}
+
+/* brille brille petite étoile */
+@keyframes brille {
+    0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff0, 0 0 20px #ff0;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff0, 0 0 30px #ff0;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff0, 0 0 20px #ff0;
+    }
+}
+
+
+
+
+
+
+/* /////////////////////////////////////// quelques icônes que j'ai faites pour la déco */
+.gamericons {
+    position: absolute;
+    /* et header en position relative */
+}
+
+/* grosses icônes */
+.www.main {
+    width: 100px;
+    top: 4600px;
+    right: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+.ordi.main {
+    width: 100px;
+    top: 4800px;
+    right: 50%;
+    transform: rotate(-12deg);
+}
+
+.heartsoul.main {
+    width: 100px;
+    top: 4500px;
+    right: 10%;
+    transform: translateX(-50%) rotate(-15deg);
+}
+
+.vr.main {
+    width: 100px;
+    top: 4700px;
+    right: 10%;
+    transform: translateX(-50%);
+}
+
+.gamericons.main {
+    z-index: 1;
+    opacity: 0.9;
+    animation: floatBig 6s ease-in-out infinite;
+}
+
+@keyframes floatBig {
+    0% {
+        transform: translateY(0px) rotate(-3deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(3deg) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(-3deg) scale(1);
+    }
+}
+
+.gamericons.www.main:hover,
+.gamericons.ordi.main:hover,
+.gamericons.heartsoul.main:hover,
+.gamericons.vr.main:hover {
+    animation: floatBig 0.42s ease-in-out 20;
+}
+
+
+
+/* petites icônes */
+.gamericons:not(.main) {
+    width: 20px;
+    z-index: -1;
+    animation-name: fishMove;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes fishMove {
+    0% {
+        transform: translateX(0px) translateY(0px) rotate(0deg);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateX(10px) translateY(4000px) rotate(10deg);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateX(-5px) translateY(0px) rotate(-5deg);
+        opacity: 0.8;
+    }
+} /* & du random dans l'espace pour spicer le tout avec gamericons.js */
+
+
+
+
+
+
+[id=footer] {
+    background: linear-gradient(0deg, rgb(0, 17, 40), rgb(5, 44, 98));
+    position: relative;
+    overflow: hidden;
+}
+
+.connectQuatre {
+    z-index: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+}
+.connectGrille {
+    position: absolute;
+    transform: translateY(-500px);
+    animation: apparitionGrille 42s ease forwards;
+}
+
+@keyframes apparitionGrille {
+    from {
+        opacity: 0;
+        scale: 42;
+    }
+
+    to {
+        opacity: 0.1;
+        scale: 1;
+    }
+}
+
+
+
+/* /////////////////////////////////////// PETITE version MOBILE */
+@media (width <=550px) {
+
+    .navigation {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    p {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-container {
+        width: 90%;
+    }
+
+    .connectQuatre {
+        opacity: 0.5;
+    }
+}
+
+
+
+@media (width <=1270px) {
+
+    /* la coulée des grosses icônes selon l'étendue de la page */
+    .gamericons.main {
+        z-index: -1;
+        animation: floatBig 350s ease-in-out infinite;
+    }
+
+    @keyframes floatBig {
+        0% {
+            transform: translateY(-400vh) rotate(-10deg) scale(0.9);
+            opacity: 0.8;
+        }
+
+        50% {
+            transform: translateY(400vh) rotate(10deg) scale(0.7);
+            opacity: 0.67;
+        }
+
+        100% {
+            transform: translateY(-400vh) rotate(-10deg) scale(0.9);
+            opacity: 0.8;
+        }
+    }
+
+    .www.main {
+        top: 4000px;
+        right: 70%;
+        animation-delay: 0s;
+    }
+
+    .ordi.main {
+        top: 4300px;
+        right: 50%;
+        animation-delay: -20s;
+    }
+
+    .heartsoul.main {
+        top: 3000px;
+        right: 30%;
+        animation-delay: -40s;
+    }
+
+    .vr.main {
+        top: 1000px;
+        right: 10%;
+        animation-delay: -60s;
+    }
+
+     .connectQuatre {
+        opacity: 0.3;
+    }
+}
+
+@media (width <=466px) {  /* ajusté à l'oeil */
+
+    .gamericons.main {
+        z-index: -1;
+        animation: floatBig 420s ease-in-out infinite;
+    }
+
+    @keyframes floatBig {
+        0% {
+            transform: translateY(-400vh) rotate(30deg) scale(1);
+            opacity: 0.5;
+        }
+
+        50% {
+            transform: translateY(2485vh) rotate(-70deg) scale(0.8);
+            opacity: 0.3;
+        }
+
+        100% {
+            transform: translateY(-400vh) rotate(30deg) scale(1);
+            opacity: 0.5;
+        }
+    }
+
+    .www.main {
+        top: 3500px;
+        right: 85%;
+        animation-delay: -15s;
+    }
+
+    .ordi.main {
+        top: 4400px;
+        right: 50%;
+        animation-delay: -50s;
+    }
+
+    .heartsoul.main {
+        top: 2000px;
+        right: 15%;
+        animation-delay: -5s;
+    }
+
+    .vr.main {
+        top: 1000px;
+        right: 30%;
+        animation-delay: 0s;
+    }
+
+     .connectQuatre {
+        opacity: 0.1;
+    }
+}

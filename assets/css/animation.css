@@ -1,0 +1,344 @@
+/* /////////////////////////////////////// animations présentes dans INDEX.HTML */
+
+
+/* rayons-verts */
+.rayons-container {
+    position: relative;
+    transform-origin: left center;
+}
+
+.rayons {
+    opacity: 0;
+    animation: showFinal 0s 3.2s forwards;
+}
+
+.rayons-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    background-image: url("../images/anim_rayons-verts/rayons-verts-spritesheet.png");
+    background-repeat: no-repeat;
+
+    /* 12 frames verticales */
+    background-size: 100% 1200%;
+
+    animation:
+        deroulement 2.4s steps(11) 1s forwards,
+        cacherFrames 0s 3.2s forwards;
+}
+
+
+@keyframes deroulement {
+    from {
+        background-position: right top;
+    }
+
+    to {
+        background-position: right bottom;
+    }
+}
+
+@keyframes cacherFrames {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes showFinal {
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.rayons-container:hover {
+    animation: wave 4s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0) skewY(0deg);
+    }
+
+    20% {
+        transform: translateY(-2px) skewY(2deg);
+    }
+
+    40% {
+        transform: translateY(1px) skewY(-2deg);
+    }
+
+    60% {
+        transform: translateY(-1px) skewY(2deg);
+    }
+
+    80% {
+        transform: translateY(2px) skewY(-1deg);
+    }
+
+    100% {
+        transform: translateY(0) skewY(0deg);
+    }
+}
+
+
+
+/* /////////////////////////////////////// bouton "À jouer immédiatement" */
+.bouton {
+    display: inline-block;
+    padding: 10px 20px;
+    line-height: 1.2em;
+    background-color: var(--teinte4);
+    border-radius: 7px;
+    text-decoration: none;
+    transform: translateX(42px);
+}
+
+.bouton:active {
+    color: var(--teinte1);
+}
+
+[id=telecharger]:hover {
+    animation: secouer 0.1s ease-in-out infinite;
+    filter: brightness(1.2);
+}
+
+@keyframes secouer {
+    0% {
+        transform: translateX(42px) translateY(0);
+    }
+
+    25% {
+        transform: translateX(43px) translateY(-1px);
+    }
+
+    50% {
+        transform: translateX(42px) translateY(0);
+    }
+
+    75% {
+        transform: translateX(40px) translateY(2px);
+    }
+
+    100% {
+        transform: translateX(42px) translateY(0);
+    }
+}
+
+
+
+/* /////////////////////////////////////// trois cercles petri de verdure */
+.trois-verdu {
+    width: 20%;
+    height: auto;
+}
+
+.trois-verdu:hover {
+    animation: mysterieuse 3s ease-in-out infinite alternate;
+}
+
+@keyframes mysterieuse {
+    0% {
+        transform: scale(1);
+        filter:
+            brightness(1) contrast(1) drop-shadow(0 0 0 rgba(120, 255, 120, 0));
+    }
+
+    50% {
+        transform: scale(1.04);
+        filter:
+            brightness(1.15) contrast(1.3) drop-shadow(0 0 8px rgba(120, 255, 120, 0.4));
+    }
+
+    100% {
+        transform: scale(1.08);
+        filter:
+            brightness(1.25) contrast(1.5) drop-shadow(0 0 15px rgba(120, 255, 120, 0.7));
+    }
+}
+
+
+
+/* /////////////////////////////////////// cercle organique en rotation */
+[id=cercle-organique] {
+    width: 100%;
+    transform-origin: center;
+    animation: rotation 6s linear infinite;
+}
+
+@keyframes rotation {
+
+    /* cercle qui tourne */
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+/* /////////////////////////////////////// sprite alex pixel */
+
+.sprite-alex {
+    position: relative;
+    overflow: hidden;
+}
+
+.sprite-alex img:nth-child(even) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.sprite-alex:hover img:nth-child(even) {
+    opacity: 1;
+    animation: flash 0.35s ease-out;
+}
+
+/* petit flash blanc rapide */
+@keyframes flash {
+    0% {
+        filter: brightness(1) contrast(1);
+    }
+
+    30% {
+        filter: brightness(2.5) contrast(1.2);
+    }
+
+    100% {
+        filter: brightness(1) contrast(1);
+    }
+}
+
+
+
+/* /////////////////////////////////////// globe flottant */
+.globe {
+    filter: brightness(0.9);
+    transform-origin: center;
+    animation: flotter 6s ease-in-out infinite;
+}
+
+@keyframes flotter {
+
+    /* flotte sur place */
+    0% {
+        transform: scale(1) translateY(0px);
+    }
+
+    50% {
+        transform: scale(1.1) translateY(-30px);
+    }
+
+    100% {
+        transform: scale(1) translateY(0px);
+    }
+}
+
+.globe:hover {
+    animation-duration: 0.5s;
+    /* + rapide */
+    filter: brightness(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+/* /////////////////////////////////////// PETITE version MOBILE */
+@media (width <=600px) {
+
+    .bouton {
+        transform: translateX(10px) scale(0.7);
+    }
+
+    @keyframes secouer {
+        0% {
+            transform: translateX(10px) translateY(0) scale(0.7);
+        }
+
+        25% {
+            transform: translateX(11px) translateY(-1px) scale(0.7);
+        }
+
+        50% {
+            transform: translateX(10px) translateY(0) scale(0.7);
+        }
+
+        75% {
+            transform: translateX(8px) translateY(2px) scale(0.7);
+        }
+
+        100% {
+            transform: translateX(10px) translateY(0) scale(0.7);
+        }
+    }
+
+
+
+    [id=cercle-organique] {
+        animation: hautbasrot 12s linear infinite;
+    }
+
+    @keyframes hautbasrot {
+        0% {
+            transform: translateY(-60px) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(480px) rotate(180deg);
+        }
+
+        100% {
+            transform: translateY(-60px) rotate(360deg);
+        }
+    }
+
+
+
+    .sprite-alex {
+        transform: translateX(120px) rotateY(0deg) scale(1);
+        transition: transform 1.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+}
+
+@media (width <=450px) {
+    .sprite-alex {
+        transform: translateX(20px) rotateY(1080deg) scale(0.7); /* ouf je kiffe */
+    }
+}
+
+
+@media (width <=500px) {
+
+    [id=cercle-organique] {
+        animation: hautbasrot 12s linear infinite;
+    }
+
+    @keyframes hautbasrot {
+        0% {
+            transform: translateY(-60px) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(560px) rotate(180deg);
+        }
+
+        100% {
+            transform: translateY(-60px) rotate(360deg);
+        }
+    }
+}

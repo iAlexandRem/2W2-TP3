@@ -1,0 +1,809 @@
+* {
+	padding: 0;
+	box-sizing: border-box;
+}
+
+[id=curseur] {
+	position: absolute;
+	width: 50px;
+	height: auto;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	z-index: var(--z-cursor);
+}
+
+html {
+	font-family: Helvetica, Arial, sans-serif;
+	scroll-behavior: smooth;
+	color: rgb(40, 22, 0);
+	cursor: none;
+}
+
+/* Polices libres de droits téléchargées */
+@font-face {
+	font-family: 'A-Bugs-Life-Debugged';
+	src: url("../fonts/a-bugs-life-debugged.ttf") format('truetype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'A-Bugs-Life';
+	src: url("../fonts/a-bugs-life.ttf") format('opentype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'The-Natures';
+	src: url("../fonts/the-natures.ttf") format('opentype');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'LadyNature';
+	src: url("../fonts/lady-nature.otf") format('opentype');
+	font-display: swap;
+}
+
+
+
+html {
+	font-family: 'LadyNature', Helvetica, Arial, sans-serif;
+	scroll-behavior: smooth;
+}
+
+h1 {
+	font-family: 'A-Bugs-Life', Helvetica, Arial, sans-serif;
+	font-size: 42px;
+	color: rgba(209, 205, 74, 0.67);
+}
+
+
+body {
+	margin: 0;
+	height: 100vh;
+	background-image: url("../images/gradient-paysage.png");
+	background-size: cover;
+	background-position: center;
+}
+
+img {
+	width: 100%;
+	align-self: center;
+}
+
+:root {
+	--teinte0: rgb(192 224 154);
+	--teinte1: rgb(119 165 70);
+	--teinte2: rgb(62, 35, 0);
+	--teinte3: rgb(155, 242, 255);
+	--teinte4: rgb(209 204 74);
+
+	--espace1: 10px;
+	--espace2: 20px;
+	--espace3: 30px;
+
+	--z-cursor: 300;
+}
+
+section {
+	position: relative;
+	padding: var(--espace1);
+	border-bottom: none;
+}
+
+section::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 7px;
+
+	background: repeating-linear-gradient(0deg,
+			var(--teinte2) 0,
+			var(--teinte0) 7px,
+			transparent 7px,
+			transparent 14px);
+}
+
+.main-section {
+	background: radial-gradient(circle at center,
+			rgba(255, 193, 0, 0.3) 0%,
+			rgba(255, 193, 0, 0) 70%);
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+
+h2 {
+	font-family: 'A-Bugs-Life-Debugged', Helvetica, Arial, sans-serif;
+	color: rgb(227, 227, 227);
+	font-weight: bold;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+p {
+	text-align: center;
+	letter-spacing: 2px;
+}
+
+.the-natures {
+	font-family: 'The-Natures', Helvetica, Arial, sans-serif;
+}
+
+* + p,
+* + a {
+	margin-top: var(--espace1);
+}
+
+a {
+	font-family: 'The-Natures', Helvetica, Arial, sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+
+
+/* /////////////////////////////////////// ENTÊTE principale */
+.header-sticky,
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 5px 20px;
+}
+
+.header-sticky {
+	position: sticky;
+	top: 0;
+	background: var(--teinte1);
+	border-radius: 0;
+	z-index: 200;
+}
+
+header {
+	border-bottom: 2px solid var(--teinte2);
+	padding: 10px 20px;
+	background: linear-gradient(0deg, var(--teinte0), var(--teinte1));
+	border-radius: 42px;
+}
+
+header>div {
+	display: flex;
+	gap: 30px;
+	padding: var(--espace3);
+}
+
+
+
+/* Logo */
+.logo {
+	color: var(--teinte1);
+	font-size: var(--espace3);
+}
+
+.logo a {
+	margin-left: var(--espace2);
+}
+
+.logo a img {
+	width: auto;
+}
+
+
+
+/* /////////////////////////////////////// MENU navigation */
+nav a span {
+	position: relative;
+}
+
+nav a span::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 100%;
+	height: 2px;
+	background-color: var(--teinte2);
+	scale: 0;
+	transition: scale 220ms;
+	transform-origin: center;
+}
+
+nav a:hover span::after {
+	scale: 100%;
+}
+
+.navigation {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--espace3);
+}
+
+.navigation a {
+	color: var(--teinte2);
+	transition: scale 800ms;
+	font-size: 23px;
+}
+
+.navigation a:hover {
+	scale: 1.1;
+	color: var(--teinte2);
+}
+
+
+
+
+
+
+
+
+
+
+/* HERO-page */
+[id=hero] {
+	display: grid;
+	place-items: center;
+}
+
+[id=hero]>* {
+	grid-area: 1 / 1;
+}
+
+[id=hero] img {
+	max-height: 80vh;
+}
+
+.contenu {
+	max-width: 500px;
+}
+
+
+.insectissime-exclamation {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	color: rgb(40, 22, 0);
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.425);
+}
+
+
+
+/* Un jeu avec quelques bugs */
+.main-section {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.lignes-texte {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+}
+
+[id=jeu] {
+	color: rgb(40, 22, 0);
+}
+
+
+
+
+
+dt {
+	margin-top: var(--espace3);
+}
+
+dd {
+	margin: 0 0 var(--espace1) 0;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+/* Contenu principal */
+main {
+	max-width: 1200px;
+	margin-inline: auto;
+}
+
+main>*+* {
+	margin-top: 80px;
+}
+
+
+
+/* Composante GRILLE */
+.grille {
+	--colonne: 30ch;
+
+	display: grid;
+	justify-items: center;
+	grid-template-columns: repeat(auto-fit, minmax(var(--colonne), 1fr));
+	gap: var(--espace3);
+	padding: var(--espace2);
+}
+
+.grille.large {
+	--colonne: 45ch;
+}
+
+.grille.un-pour-deux {
+	&> :last-child {
+		grid-column: span 2;
+	}
+}
+
+.surligne {
+	font-weight: bold;
+	background-color: rgb(209, 204, 74);
+	font-size: var(--espace3);
+}
+
+
+
+
+[id=chenille] {
+	position: absolute;
+	width: 5%;
+	left: 0;
+	transform: scaleX(1);
+	transition: left 4.2s linear, transform 0.2s ease;
+}
+
+[id=chenille].go-right {
+	left: 95%;
+	transform: scaleX(1);
+}
+
+[id=chenille].go-left { /* voir dans curseur.js */
+	left: 0;
+	transform: scaleX(-1);
+}
+
+
+
+
+/* Composante CARTE */
+.carte {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	background-color: var(--teinte0);
+}
+
+.carte img {
+	width: 80px;
+}
+
+
+
+
+
+/* Sections principales */
+section > header {
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+dl {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: left;
+}
+
+section dl {
+	grid-template-columns: 1fr 3fr;
+}
+
+dl dt {
+	font-size: 1.3em;
+}
+
+dl dd {
+	margin: 0;
+}
+
+.points-forts {
+	grid-auto-flow: column;
+	grid-template-rows: repeat(4, auto);
+	place-content: center;
+	place-items: center;
+}
+
+.points-forts dd {
+	font-size: 40px;
+	padding: 0 20px;
+}
+
+
+
+
+.grille article {  /* pour des sections d'infos ET pour les vignettes d'arcade */
+	display: flex;
+	flex-direction: column;
+	gap: var(--espace3);
+	padding: var(--espace3);
+	align-items: center;
+}
+
+.grille article h3 {
+	text-align: center;
+}
+
+.grille .arcadetitre {
+	letter-spacing: 0.02em;
+	margin: 0;
+	min-height: 4em;
+}
+
+/* arrangements de la typo */
+.grille p {
+	font-size: 0.85rem;
+	line-height: 1.35;
+}
+
+.article-moi h3 {
+	font-size: 1.5rem;
+}
+
+
+.article-moi p {
+	font-size: 0.9rem;
+	line-height: 1.6;
+	letter-spacing: 0.3px;
+	font-style: italic;
+	font-weight: 400;
+	color: #ffffff;
+	font-family: Georgia, serif;
+
+	filter: blur(2px);
+	opacity: 0.7;
+
+	transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+.article-moi p:hover {
+	filter: blur(0px);
+	opacity: 1;
+}
+
+
+.article-moi cite {
+	font-size: 2.5rem;
+	text-align: center;
+	position: relative;
+	font-style: italic;
+}
+
+.article-moi cite::before {
+	content: "“";
+	font-size: 3rem;
+	margin-right: 0.25rem;
+}
+
+.article-moi cite::after {
+	content: "”";
+	font-size: 3rem;
+	margin-left: 0.25rem;
+}
+
+
+
+
+
+.grille p i {
+	color: rgba(231, 231, 231, 0.55);
+	font-style: italic;
+}
+
+.grille small {
+	color: var(--teinte2);
+	background-color: var(--teinte4);
+	font-size: 0.85rem;
+}
+
+
+
+
+
+
+
+
+/* Titres néons des jeux d'ARCADE */
+.arcadetitre {
+	font-family: 'A-Bugs-Life-Debugged', Helvetica, Arial, sans-serif;
+	font-size: 22px;
+	color: rgb(255, 255, 255);
+	text-shadow:
+		0 0 5px #00f0ff,
+		0 0 10px #00f0ff,
+		0 0 20px #ff00ff,
+		0 0 40px rgba(255, 0, 255, 0.6);
+	transition: all 0.2s ease-in-out;
+	transform: translateY(15px);
+	width: 200px; /* à cause de "Les aventures des petits curieux" */
+}
+
+.arcade-cadenas { /* j'ai enlevé les cadenas pour l'index.html */
+	position: relative;
+	width: 150px;
+	aspect-ratio: 1 / 1;
+}
+
+.arcade-cadenas img {
+	width: 100%;
+	height: 100%;
+}
+
+/* le look des IMAGES des vignettes */
+.vignette {
+	transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+	border-radius: 12px;
+}
+
+.vignette:hover {
+	transform: scale(1.05) rotateZ(0.5deg);
+
+	box-shadow:
+		0 10px 30px rgba(0, 0, 0, 0.35),
+		0 0 25px rgba(120, 180, 255, 0.35);
+
+	filter: brightness(1.1) contrast(1.1) saturate(1.2);
+}
+
+/* le look des INFOS sur les vignettes */
+.genre-tags {
+	height: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--espace1);
+	width: 150px;
+}
+
+.genre {
+	background: linear-gradient(145deg, #4CAF50, #2e7d32);
+	color: white;
+	padding: 4px 10px;
+	border-radius: 12px;
+	font-size: 0.85rem;
+	font-style: italic;
+	box-shadow:
+		0 4px 10px rgba(0, 0, 0, 0.25),
+		inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.description {
+	margin-top: 60px; /* et height 0 à .genre-tags */
+	position: relative;
+	letter-spacing: 0.42px;
+	padding: var(--espace1);
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+	width: 167px;
+
+	max-height: 20px; /* état fermé */
+	color: rgba(0, 0, 0, 0); /* cache le texte */
+	transition: max-height 0.3s ease-in-out, color 0.42s ease-out;
+}
+
+.description::before {
+	position: absolute;
+	content: "+";
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgba(0, 0, 0, 0.75);
+	font-size: 2rem;
+}
+
+.description:hover::before {
+	opacity: 0;
+}
+
+.description:hover {
+	max-height: 500px;
+	color: rgba(0, 0, 0, 0.75); /* réaffiche le texte */
+}
+
+.auteur {
+	white-space: nowrap; 
+	background: linear-gradient(135deg,
+			#fff8b0 0%,
+			#ffd700 25%,
+			#ffbf00 50%,
+			#ffd700 75%,
+			#fff8b0 100%);
+	padding: 0 10px;
+	color: #4a3b00;
+	border: 1px solid #d4af37;
+	border-radius: 4px;
+	box-shadow:
+		inset 0 1px 1px rgba(255, 255, 255, 0.7),
+		0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+/* La vraie Galerie de Jeux 2J2 H2026 (lien) */
+.voir-plus {
+	color: var(--teinte5);
+	font-size: var(--espace2);
+	position: relative;
+	left: 0;
+	transition: left 0.2s ease-out, color 0.2s ease-out;
+	transform: translateX(100px);
+}
+
+.voir-plus:hover {
+	left: 10px;
+	color: white;
+	text-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 20px #6bb8ff,
+		0 0 30px #6bb8ff;
+}
+
+
+
+
+/* CAROUSEL des images */
+.carousel {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	overflow-x: auto;
+	padding: 10px;
+	scroll-snap-type: x mandatory;
+}
+
+
+.carousel img {
+	height: 200px;
+	width: auto;
+	flex: 0 0 auto;
+	border-radius: 12px;
+	scroll-snap-align: start;
+	transition: transform 0.3s ease;
+}
+
+
+
+
+/* /////////////////////////////////////// PIED de page */
+[id=footer] {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	background: linear-gradient(0deg, rgb(40, 22, 0), var(--teinte2));
+	color: var(--teinte4);
+}
+
+ul {
+	list-style: none;
+}
+
+ul.chenille li,
+ul.fourmi li,
+ul.coccinelle li {
+	position: relative;
+	padding-left: 28px;
+	margin-bottom: 5px;
+}
+
+ul.chenille li::before {
+	content: "🐛";
+	position: absolute;
+	left: 0;
+}
+
+ul.fourmi li::before {
+	content: "🐜";
+	filter: hue-rotate(42deg) saturate(12) brightness(2.2);
+	position: absolute;
+	left: 0;
+}
+
+ul.coccinelle li::before {
+	content: "🐞";
+	position: absolute;
+	left: 0;
+}
+
+ul.coccinelle li:hover::before {
+	transform: rotate(15deg) scale(1.2);
+	filter: hue-rotate(30deg) saturate(3) brightness(1.2);
+	transition: 0.2s ease;
+}
+
+
+
+
+/* Utilitaires */
+.paysage {
+	aspect-ratio: 16/9;
+}
+
+.portrait {
+	aspect-ratio: 9/16;
+}
+
+
+
+
+
+/* /////////////////////////////////////// PETITE version MOBILE */
+@media (width <=600px) {
+	.header-sticky {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.navigation {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		/* 2 colonnes */
+		gap: 16px;
+		transition: gap 4.2s ease;
+		text-align: center;
+	}
+
+	.navigation a {
+		font-size: 20px;
+	}
+
+
+	section h1 {
+		font-size: 30px;
+	}
+
+	p {
+		font-size: 12px;
+	}
+
+	dd {
+		font-size: var(--espace1);
+	}
+
+
+	.voir-plus {
+		transform: translateX(0);
+		font-size: var(--espace1);
+	}
+}
+
+@media (width <=550px) {
+
+	.points-forts {
+		grid-auto-flow: row;
+	}
+
+	.points-forts dd {
+		font-size: 2rem;
+	}
+
+	.article-moi cite {
+		font-size: 1rem;
+	}
+}

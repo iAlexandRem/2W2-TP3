@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <link id="favicon" rel="shortcut icon" href="assets/images/cocciRouge.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/arcade.css">
+    <link rel="stylesheet" href="assets/css/animation.css">
+    <title>A R C A D E</title>
+    <script src="assets/js/curseur.js" defer></script>
+    <script src="assets/js/vignettes.js" defer></script>
+    <script src="assets/js/template.js" defer></script>
+    <script src="assets/js/recherche.js" defer></script>
+    <script src="assets/js/cle.js" defer></script>
+    <script src="assets/js/surprise.js" defer></script>
+    <script src="assets/js/gamericons.js" defer></script>
+</head>
+
+<body>
+    <img id="curseur" src="assets/images/souris-feuille.png" alt=""> <!-- curseur feuille -->
+
+    <header class="header-sticky"> <!-- entête principale -->
+        <div class="logo">
+            <a href="">
+                <img src="assets/images/Insectissime-LaCollection_Titre.png" width="50" height="50" alt="Insectissime">
+            </a>
+        </div>
+
+        <nav class="navigation">
+            <a href="index.html"><span>🍃</span></a>
+            <a href="#arcade"><span>Arcade de jeux</span></a>
+            <a href="#footer"><span>Fond de l'abysse🌑</span></a>
+        </nav>
+    </header>
+
+    <section> <!-- arcade -->
+        <header>
+            <h2 id="arcade">Arcade <span style="color:#ffffffb1;">(La Collection </span><span
+                    style="color:#4caf50;">complète</span><span style="color:#ffffffb1;"> des jeux du cours 2J2)</span>
+            </h2>
+            <p><small>Pour les gens de </small>3-5 ans <small>ou</small> 6-8 ans</p>
+            <p>* Tant pis si vous n'avez pas l'âge approprié</p>
+
+            <img class="gamericons www main" src="assets/images/www.png" alt="">
+            <img class="gamericons ordi main" src="assets/images/ordi.png" alt="">
+            <img class="gamericons heartsoul main" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons vr main" src="assets/images/vr.png" alt="">
+
+            <img class="gamericons www w1" src="assets/images/www.png" alt="">
+            <img class="gamericons www w2" src="assets/images/www.png" alt="">
+            <img class="gamericons www w3" src="assets/images/www.png" alt="">
+            <img class="gamericons www w4" src="assets/images/www.png" alt="">
+            <img class="gamericons www w5" src="assets/images/www.png" alt="">
+            <img class="gamericons www w6" src="assets/images/www.png" alt="">
+
+            <img class="gamericons ordi o1" src="assets/images/ordi.png" alt="">
+            <img class="gamericons ordi o2" src="assets/images/ordi.png" alt="">
+            <img class="gamericons ordi o3" src="assets/images/ordi.png" alt="">
+            <img class="gamericons ordi o4" src="assets/images/ordi.png" alt="">
+            <img class="gamericons ordi o5" src="assets/images/ordi.png" alt="">
+            <img class="gamericons ordi o6" src="assets/images/ordi.png" alt="">
+
+            <img class="gamericons heartsoul h1" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons heartsoul h2" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons heartsoul h3" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons heartsoul h4" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons heartsoul h5" src="assets/images/heartsoul.png" alt="">
+            <img class="gamericons heartsoul h6" src="assets/images/heartsoul.png" alt="">
+
+            <img class="gamericons vr v1" src="assets/images/vr.png" alt="">
+            <img class="gamericons vr v2" src="assets/images/vr.png" alt="">
+            <img class="gamericons vr v3" src="assets/images/vr.png" alt="">
+            <img class="gamericons vr v4" src="assets/images/vr.png" alt="">
+            <img class="gamericons vr v5" src="assets/images/vr.png" alt="">
+            <img class="gamericons vr v6" src="assets/images/vr.png" alt="">
+
+
+            <p><mark>Nos jeux éducatifs vous mettront au défi : un enfant pourrait-il vous battre?</mark></p>
+        </header>
+
+
+        <div class="search-container">
+            <input id="barre-recherche" type="text" placeholder="Rechercher par mot-clé...">
+            <div class="reset hidden">❌</div>
+            <div class="loupe">🔑</div>
+            <div class="particules"></div>
+        </div>
+
+        <div class="grille" id="grille-miniJeux">
+            <!-- templates +++++++++++++++++++++++++++++++++++++ -->
+        </div>
+    </section>
+
+
+    <footer id="footer"> <!-- pied de page -->
+        <div>
+            <p>&copy; 2026 Insectissime! La Collection. Site Web prototype en développement.</p>
+            <p>Collège de Maisonneuve. Cours 2W2.</p>
+        </div>
+        <div class="connectQuatre"><img src="assets/images/grilleConnect4volante.png" alt=""></div>
+        <div class="connectGrille"><img src="assets/images/grilleConnect4volante.png" alt=""></div>
+    </footer>
+
+
+    <template>
+        <article class="tuile-jeu woosh">
+            <h3 class="arcadetitre"></h3> <!-- titre du jeu -->
+            <div class="favori cache"></div> <!-- étoile -->
+            <span class="mots" style="display: none;"></span> <!-- autres mots clés de recherche -->
+            <div class="arcade-cadenas">
+                <a class="lien-jeu" href="" target="_blank">
+                    <img class="vignette freeze" alt=""> <!-- enlever freeze dans cle.js -->
+                </a>
+                <div></div> <!-- cadenas -->
+            </div>
+            <div class="genre-tags"></div>
+            <p class="description"></p>
+            <p class="auteur"></p>
+        </article>
+    </template>
+</body>
+
+</html>
